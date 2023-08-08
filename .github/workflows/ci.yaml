@@ -20,4 +20,4 @@ jobs:
           name: curl
           options: "--network local"
           args: |
-           ping testmock && hostname
+             hostname

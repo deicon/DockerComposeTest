@@ -32,4 +32,4 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile.curl
-    command: ["./wait-for-it.sh","testmock:8080","--", "curl", "http://testmock:8080/personen/1"]
+    command: ["./wait-for-it.sh","testmock:8080","-q", "--", "curl", "http://testmock:8080/personen/1"]

@@ -20,4 +20,4 @@ jobs:
           name: curl
           options: "--network local"
           args: |
-            curl  http://localhost:8080/personen/1
+           ping testmock && hostname

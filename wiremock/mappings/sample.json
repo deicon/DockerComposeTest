@@ -1,0 +1,16 @@
+{
+    "priority": 1,
+    "request": {
+      "method": "GET",
+      "urlPath": "/personen/1"
+    },
+    "response": {
+      "bodyFileName": "personendetails_1.json",
+      "transformers": ["response-template"],
+      "headers": {
+        "Content-Type": "application/json;charset=UTF-8"
+      },
+      "status": 200
+    }
+  }
+  

@@ -1,0 +1,35 @@
+version: "3.7"
+networks:
+  backends:  
+    name: local 
+services:
+  testmock:
+    networks: 
+      - backends
+    hostname: testmock
+    container_name: testmock
+    image: wiremock/wiremock:2.27.2
+    ports:
+      - 8090:8080
+    volumes:
+      - ./wiremock:/home/wiremock
+    command: [ "--global-response-templating" ]
+  mongodb:
+    networks: 
+      -  backends
+    image: "mongo:latest"
+    ports:
+      - "27017:27017"
+    environment:
+      - "MONGO_INITDB_ROOT_USERNAME=root"
+      - "MONGO_INITDB_ROOT_PASSWORD=example"
+  curl: 
+    networks: 
+       - backends
+    depends_on: 
+     - testmock
+    image: local.io/curl:latest
+    build: 
+      context: .
+      dockerfile: Dockerfile.curl
+    command: ["./wait-for-it.sh","testmock:8080","--", "curl", "http://testmock:8080/personen/1"]

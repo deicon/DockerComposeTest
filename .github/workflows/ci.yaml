@@ -13,4 +13,11 @@ jobs:
           compose-file: "./docker-compose.yaml"
         env:
           CUSTOM_VARIABLE: "test"
-    
+      - name: Run curl against testmock
+        uses: tj-actions/docker-run@v2
+        with:
+          image: local.io/curl:latest
+          name: curl
+          options: "--network local"
+          args: |
+            curl  http://testmock:8080/personen/1
